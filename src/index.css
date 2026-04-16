@@ -1,13 +1,81 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --bg_color: #050505;
+  --menu_color: #111111;
+  --text_color: #ffffff;
+  --teal_color: #10E4F9;
+  --dark_gray_color: #1C1C1C;
+  --red_color: #DC3030;
+  --gold_color: #C79E57;
+
+  --font: 'Inter', sans-serif;
+
+  --title_size: 32px;
+  --h1_size: 24px;
+  --h2_size: 20px;
+  --h3_size: 16px;
+  --body_size: 14px;
+  --small_size: 12px;
+
+  --title_weight: 700;
+  --h1_weight: 700;
+  --h2_weight: 600;
+  --h3_weight: 600;
+  --body_weight: 400;
+  --small_weight: 400;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg_color);
+  color: var(--text_color);
+  font-family: var(--font);
+  font-size: var(--body_size);
+  font-weight: var(--body_weight);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.title {
+  font-size: var(--title_size);
+  font-weight: var(--title_weight);
 }
+
+h1, .h1 {
+  font-size: var(--h1_size);
+  font-weight: var(--h1_weight);
+}
+
+h2, .h2 {
+  font-size: var(--h2_size);
+  font-weight: var(--h2_weight);
+}
+
+h3, .h3 {
+  font-size: var(--h3_size);
+  font-weight: var(--h3_weight);
+}
+
+p, .body {
+  font-size: var(--body_size);
+  font-weight: var(--body_weight);
+}
+
+.small, label {
+  font-size: var(--small_size);
+  font-weight: var(--small_weight);
+}
+
+.text-teal   { color: var(--teal_color); }
+.text-red    { color: var(--red_color); }
+.text-gold   { color: var(--gold_color); }
+.text-white  { color: var(--text_color); }
+
+.bg-menu      { background-color: var(--menu_color); }
+.bg-dark-gray { background-color: var(--dark_gray_color); }

@@ -1,38 +1,116 @@
 .App {
-  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.section {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 24px;
+  padding: 64px 0;
+  border-bottom: 1px solid var(--dark_gray_color);
 }
 
-.App-link {
-  color: #61dafb;
+.title-photo {
+  width: 100%;
+  max-width: 560px;
+  border-radius: 16px;
+  display: block;
+  animation: fadeUp 0.8s ease forwards;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#title .title {
+  animation: fadeUp 0.8s ease 0.3s both;
+}
+
+.team-logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.player-columns {
+  display: flex;
+  gap: 16px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  opacity: 0;
+}
+
+.fade-up.visible {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.player-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+}
+
+.player-column.visible {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.player-card {
+  width: 200px;
+  border: 2px solid var(--gold_color);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--bg_color);
+}
+
+.player-card-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #000;
+  border-bottom: 2px solid var(--gold_color);
+  overflow: hidden;
+}
+
+.player-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.player-card-name {
+  padding: 8px 12px;
+  font-size: var(--h3_size);
+  font-weight: var(--h3_weight);
+  text-align: center;
+  border-bottom: 2px solid var(--gold_color);
+}
+
+.player-card-stats {
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--small_size);
+  font-weight: var(--small_weight);
+}
+
+.role-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
