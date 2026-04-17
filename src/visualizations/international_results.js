@@ -1,6 +1,9 @@
 import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import scrollama from 'scrollama';
+import './visualizations.css';
+
+const BASE = process.env.PUBLIC_URL;
 
 const LOGO_SIZE = 28;
 const totalWidth = 600;
@@ -15,7 +18,7 @@ export default function InternationalScrolly() {
   const svgRef = useRef();
 
   useEffect(() => {
-    d3.csv('/datasets/International_Results.csv').then(data => {
+    d3.csv(`${BASE}/datasets/International_Results.csv`).then(data => {
       const teamRegion = {};
       data.forEach(d => {
         const team = d.Winner === 'SSW' ? 'SSG' : d.Winner;
@@ -96,7 +99,7 @@ export default function InternationalScrolly() {
         .data(teamWins, d => d[0])
         .join('image')
         .attr('class', 'logo-team')
-        .attr('href', d => `/images/team_logos/${d[0]}.png`)
+        .attr('href', d => `${BASE}/images/team_logos/${d[0]}.png`)
         .attr('x', d => xTeam(d[0]) + xTeam.bandwidth() / 2 - LOGO_SIZE / 2)
         .attr('y', height + 8).attr('width', LOGO_SIZE).attr('height', LOGO_SIZE)
         .style('opacity', 1);
@@ -105,7 +108,7 @@ export default function InternationalScrolly() {
         .data(regionWins, d => d[0])
         .join('image')
         .attr('class', 'logo-region')
-        .attr('href', d => `/images/region_logos/${d[0]}.png`)
+        .attr('href', d => `${BASE}/images/region_logos/${d[0]}.png`)
         .attr('x', d => xRegion(d[0]) + xRegion.bandwidth() / 2 - LOGO_SIZE / 2)
         .attr('y', height + 8).attr('width', LOGO_SIZE).attr('height', LOGO_SIZE)
         .style('opacity', 0);
@@ -150,18 +153,12 @@ export default function InternationalScrolly() {
   }, []);
 
   return (
-    <div ref={containerRef} style={{ position: 'relative' }}>
-      <div style={{
-        position: 'sticky',
-        top: `calc(50vh - ${totalHeight / 2}px)`,
-        display: 'flex',
-        justifyContent: 'center',
-        zIndex: 1,
-      }}>
+    <div ref={containerRef} className="ir-container">
+      <div className="ir-sticky">
         <svg ref={svgRef} />
       </div>
-      <div className="scrolly-step" style={{ height: '100vh' }} />
-      <div className="scrolly-step" style={{ height: '100vh' }} />
+      <div className="scrolly-step ir-step" />
+      <div className="scrolly-step ir-step" />
     </div>
   );
 }

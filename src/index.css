@@ -63,8 +63,9 @@ h3, .h3 {
 }
 
 p, .body {
-  font-size: var(--body_size);
+  font-size: var(--h3_size);
   font-weight: var(--body_weight);
+  line-height: 1.6;
 }
 
 .small, label {

@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import * as d3 from 'd3';
+import './visualizations.css';
 
+const BASE = process.env.PUBLIC_URL;
 const ADCS = new Set(['Varus', 'Ashe', 'Yunara', 'Ezreal']);
 
 export default function MetaList() {
   const [champions, setChampions] = useState([]);
 
   useEffect(() => {
-    d3.csv('/datasets/Champion_Stats.csv').then(data => {
+    d3.csv(`${BASE}/datasets/Champion_Stats.csv`).then(data => {
       const filtered = data
         .filter(d => parseFloat(d.PrioScore) >= 20)
         .sort((a, b) => parseFloat(b.PrioScore) - parseFloat(a.PrioScore));
@@ -36,21 +38,22 @@ export default function MetaList() {
 
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '520px' }}>
+    <div className="ml-container">
       {champions.map(d => (
-        <div key={d.Champion} className="meta-item fade-left" style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '10px 16px',
-          border: '1.5px solid var(--gold_color)',
-          borderRadius: '8px',
-        }}>
-          <img src={`/images/champion_icons/${d.Champion}.png`} alt={d.Champion} onError={e => { e.target.src = '/images/champion_icons/Orianna.png'; }} style={{ width: 36, height: 36, borderRadius: '50%', marginRight: 8 }} />
-          <span style={{ fontWeight: 600, minWidth: '120px', color: ADCS.has(d.Champion) ? 'var(--red_color)' : 'var(--text_color)' }}>{d.Champion}</span>
-          <span style={{ color: 'var(--gold_color)', fontWeight: 600, minWidth: '160px' }}>Priority Score {d.PrioScore}</span>
-          <span style={{ color: 'var(--text_color)', minWidth: '70px' }}>KDA {d.KDA}</span>
-          <span style={{ color: 'var(--text_color)' }}>WR {d.Winrate}</span>
+        <div key={d.Champion} className="ml-row">
+          <div className="meta-item fade-left ml-item">
+            <img src={`${BASE}/images/champion_icons/${d.Champion.replace(/[\s,\-']/g, '')}.png`} alt={d.Champion} onError={e => { e.target.src = `${BASE}/images/champion_icons/Orianna.png`; }} className="ml-champ-icon" />
+            <span className={`ml-champ-name${ADCS.has(d.Champion) ? ' adc' : ''}`}>{d.Champion}</span>
+            <span className="ml-prio">Priority Score {d.PrioScore}</span>
+            <span className="ml-kda">KDA {d.KDA}</span>
+            <span className="ml-wr">WR {d.Winrate}</span>
+          </div>
+          {d.Champion === 'Varus' && (
+            <div className="ml-annotation">
+              <span className="ml-annotation-arrow">◄</span>
+              <span className="ml-annotation-text">Red text indicates ADC</span>
+            </div>
+          )}
         </div>
       ))}
     </div>

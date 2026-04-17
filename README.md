@@ -14,4 +14,4 @@ Overall thoughts:
 - Other team's bans on them
 
 
-In complete honesty, a lot of this project was created/revised using AI. Mostly for the UI elements for cleanliness, and some consulting to design some of the visualizations and the scrollytelling elements. This was mostly just to have a presentable project to have for my resume.
+In complete honesty, a lot of this project was created/revised using AI. Mostly for the UI elements for cleanliness, and some consulting to design some of the visualizations and the scrollytelling elements. This was mainly just to have a presentable project to have for my resume. 

@@ -1,5 +1,9 @@
 import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import './visualizations.css';
+
+const BASE = process.env.PUBLIC_URL;
+const TEAM_NAMES = { TSW: 'Team Secret Whales', BFX: 'FearX', GEN: 'Gen.G', BLG: 'Bilibili Gaming' };
 
 const ROLES = ['MID', 'BOT', 'SUP', 'TOP', 'JGL'];
 const ROLE_DISPLAY = { MID: 'Middle', BOT: 'Bottom', SUP: 'Support', TOP: 'Top', JGL: 'Jungle' };
@@ -21,13 +25,13 @@ function getPoints(r) {
   });
 }
 
-export default function TeamStarPlot({ team }) {
+export default function TeamStarPlot({ team, description }) {
   const svgRef = useRef();
 
   useEffect(() => {
     if (!team) return;
 
-    d3.csv('/datasets/Pre_First_Stand.csv').then(data => {
+    d3.csv(`${BASE}/datasets/Pre_First_Stand.csv`).then(data => {
       const dpmByRole = {};
       ROLES.forEach(role => {
         const candidates = data.filter(d => d.Team === team && d.Role === role);
@@ -127,7 +131,7 @@ export default function TeamStarPlot({ team }) {
 
       icons.forEach(({ x, y }, i) => {
         root.append('image')
-          .attr('href', `/images/role_logos/${ROLE_DISPLAY[ROLES[i]]}_icon.png`)
+          .attr('href', `${BASE}/images/role_logos/${ROLE_DISPLAY[ROLES[i]]}_icon.png`)
           .attr('x', x - ICON_SIZE / 2).attr('y', y - ICON_SIZE / 2)
           .attr('width', ICON_SIZE).attr('height', ICON_SIZE);
       });
@@ -135,11 +139,14 @@ export default function TeamStarPlot({ team }) {
   }, [team]);
 
   return (
-    <div className="star-plot-wrap fade-up" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '200px' }}>
-        <span style={{ fontSize: '2rem', fontWeight: 'bold', color: GOLD }}>{team}</span>
+    <div className="star-plot-wrap fade-up sp-wrap">
+      <div className="sp-info">
+        <div className="sp-header">
+          <img src={`${BASE}/images/team_logos/${team}.png`} alt={team} className="sp-team-logo" />
+          <span className="sp-team-name">{TEAM_NAMES[team] ?? team}</span>
+        </div>
         <div className="team-description">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+          <p>{description}</p>
         </div>
       </div>
       <svg ref={svgRef} />
