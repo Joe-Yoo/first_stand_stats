@@ -1,17 +1,17 @@
 # First Stand Stats
 
-Project for CS 7450 HW 4
+## Project for CS 7450 HW 4
 
-Goal is to visualize league of legends players, champions, items, etc. stats. Dashboard to explore more insights.
+This project is a scrolly telling website. The goal is to dive deeper into how G2 was able to make a great run in First Stand 2026. 
 
-Idea: Maybe a closer look in G2's almost historic run in this competition. 
+Libraries used:
+- D3 for visualizations
+- Scrollama for some scroll interactions
 
-Overall thoughts:
-- G2's Struggles vs. BLG, what are the common factors?
-- G2's dominance over the Korean teams
-- G2's playstyles? What kinds of champions do they play? Objective priorities? (Dragons, grubs, etc.)
-- Champion priorities
-- Other team's bans on them
+## How to run locally:
 
+This project was created using NPM. So do use the following commands:
+- npm install
+- npm start
 
-In complete honesty, a lot of this project was created/revised using AI. Mostly for the UI elements for cleanliness, and some consulting to design some of the visualizations and the scrollytelling elements. This was mainly just to have a presentable project to have for my resume. 
+NOTE: In complete honesty, a lot of this project was created/revised using AI. Mostly for the UI elements for cleanliness, and some consulting to design some of the visualizations and the scrollytelling elements. Also saves a lot of time with some of the redundant work. This was mainly just to have a presentable project to have for my resume. But the visualizations and the content is all my own work. 
